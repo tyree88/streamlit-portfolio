@@ -7,10 +7,11 @@ SITE_CONFIG = {
     "title": "My Portfolio",
     "subtitle": "Data Scientist & Developer",
     "icon": "🚀",
-    "author": "Your Name",
-    "email": "your.email@example.com",
-    "github": "https://github.com/yourusername",
-    "linkedin": "https://linkedin.com/in/yourusername",
+    "author": "Tyree Pearson",
+    "email": "tyreepearson88@gmail.com",
+    "github": "https://github.com/tyree88",
+    "linkedin": "https://linkedin.com/in/tyreepearson",
+    "bluesky": "https://bsky.app/profile/tyrendie.bsky.social",
 }
 
 # Theme configuration
@@ -28,35 +29,34 @@ CONTENT_CONFIG = {
         {"name": "Data Analysis", "level": 85},
         {"name": "Machine Learning", "level": 80},
         {"name": "Web Development", "level": 75},
-        {"name": "SQL", "level": 85},
         {"name": "Streamlit", "level": 90},
     ],
     "education": [
         {
-            "degree": "Master of Science in Data Science",
-            "institution": "University Name",
-            "year": "2020-2022",
-            "description": "Focused on machine learning and data visualization."
+            "degree": "Applied Generative AI Certificate",
+            "institution": "Johns Hopkins University",
+            "year": "2025",
+            "description": "Focused on Generative AI and its applications."
         },
         {
-            "degree": "Bachelor of Science in Computer Science",
-            "institution": "University Name",
-            "year": "2016-2020",
-            "description": "Specialized in software engineering and algorithms."
+            "degree": "Bachelor of Science in Geography",
+            "institution": "University of Texas at Austin",
+            "year": "2015-2019",
+            "description": "Majored in Geographic Information Systems and focused on remote sensing and spatial analysis with a minor in Computer Science."
         }
     ],
     "experience": [
         {
-            "title": "Data Scientist",
-            "company": "Company Name",
-            "period": "2022-Present",
-            "description": "Developed machine learning models for predictive analytics."
+            "title": "Solutions Architect",
+            "company": "Prefect",
+            "period": "2024-Present",
+            "description": "Building data pipelines and automating workflows showcasing the power of Prefect."
         },
         {
-            "title": "Software Developer",
-            "company": "Company Name",
-            "period": "2020-2022",
-            "description": "Built web applications and data pipelines."
+            "title": "Solutions Architect",
+            "company": "Akeyless",
+            "period": "2023-2024",
+            "description": "Demonstrating the power of Akeyless to secure and manage secrets."
         }
     ]
 }
