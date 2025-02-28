@@ -9,6 +9,9 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import os
 from typing import Dict, Optional
+from streamlit_shadcn_ui.py_components.input import input as input_text
+from streamlit_shadcn_ui.py_components.textarea import textarea
+from streamlit_shadcn_ui import button
 
 
 def send_email(
@@ -60,96 +63,117 @@ def contact_form(receiver_email: Optional[str] = None) -> Dict:
     Returns:
         Dictionary with form data if submitted, empty dict otherwise
     """
-    with st.container():
-        st.header("Contact Me")
-        st.markdown(
-            "Feel free to reach out if you have any questions or would like to collaborate!"
+    st.markdown("### Send Me a Message")
+    st.markdown(
+        "Fill out the form below to get in touch. I'll get back to you as soon as possible."
+    )
+    
+    # Initialize form data in session state if not exists
+    if "contact_form_data" not in st.session_state:
+        st.session_state.contact_form_data = {
+            "name": "",
+            "email": "",
+            "subject": "",
+            "message": "",
+            "submitted": False
+        }
+    
+    # Create form fields with shadcn-ui components
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        name = input_text(
+            label="Name",
+            placeholder="Your name",
+            key="name_input_shadcn"
         )
+    
+    with col2:
+        email = input_text(
+            label="Email",
+            placeholder="your.email@example.com",
+            key="email_input_shadcn"
+        )
+    
+    subject = input_text(
+        label="Subject",
+        placeholder="What is this regarding?",
+        key="subject_input_shadcn"
+    )
+    
+    message = textarea(
+        label="Message",
+        placeholder="Your message here...",
+        key="message_input_shadcn"
+    )
+    
+    # Submit button
+    submit_pressed = button(
+        "Send Message",
+        variant="default",
+        key="submit_contact_form",
+        class_name="w-full mt-4"
+    )
+    
+    if submit_pressed:
+        # Validate inputs
+        if not name:
+            st.error("Please enter your name.")
+            return {}
         
-        # Initialize form data in session state if not exists
-        if "contact_form" not in st.session_state:
-            st.session_state.contact_form = {
-                "name": "",
-                "email": "",
-                "subject": "",
-                "message": "",
-                "submitted": False
-            }
+        if not email or "@" not in email:
+            st.error("Please enter a valid email address.")
+            return {}
         
-        # Create form
-        with st.form("contact_form", clear_on_submit=True):
-            col1, col2 = st.columns(2)
-            
-            with col1:
-                name = st.text_input("Name", key="name_input")
-            
-            with col2:
-                email = st.text_input("Email", key="email_input")
-            
-            subject = st.text_input("Subject", key="subject_input")
-            message = st.text_area("Message", height=150, key="message_input")
-            
-            submitted = st.form_submit_button("Send Message")
-            
-            if submitted:
-                # Validate inputs
-                if not name:
-                    st.error("Please enter your name.")
-                    return {}
+        if not message:
+            st.error("Please enter a message.")
+            return {}
+        
+        # Store form data
+        form_data = {
+            "name": name,
+            "email": email,
+            "subject": subject or f"Portfolio Contact: {name}",
+            "message": message,
+            "submitted": True
+        }
+        
+        st.session_state.contact_form_data = form_data
+        
+        # Send email if receiver_email is provided
+        if receiver_email:
+            email_password = os.environ.get("EMAIL_PASSWORD")
+            if email_password:
+                email_message = f"""
+                Name: {name}
+                Email: {email}
                 
-                if not email or "@" not in email:
-                    st.error("Please enter a valid email address.")
-                    return {}
+                {message}
+                """
                 
-                if not message:
-                    st.error("Please enter a message.")
-                    return {}
+                success = send_email(
+                    sender_email=os.environ.get("EMAIL_SENDER", receiver_email),
+                    receiver_email=receiver_email,
+                    subject=subject or f"Portfolio Contact: {name}",
+                    message=email_message,
+                    password=email_password
+                )
                 
-                # Store form data
-                form_data = {
-                    "name": name,
-                    "email": email,
-                    "subject": subject or f"Portfolio Contact: {name}",
-                    "message": message,
-                    "submitted": True
-                }
-                
-                st.session_state.contact_form = form_data
-                
-                # Send email if receiver_email is provided
-                if receiver_email:
-                    email_password = os.environ.get("EMAIL_PASSWORD")
-                    if email_password:
-                        email_message = f"""
-                        Name: {name}
-                        Email: {email}
-                        
-                        {message}
-                        """
-                        
-                        success = send_email(
-                            sender_email=os.environ.get("EMAIL_SENDER", receiver_email),
-                            receiver_email=receiver_email,
-                            subject=subject or f"Portfolio Contact: {name}",
-                            message=email_message,
-                            password=email_password
-                        )
-                        
-                        if success:
-                            st.success("Your message has been sent successfully!")
-                        else:
-                            st.warning(
-                                "There was an issue sending your message. "
-                                "Please try again later or contact me directly."
-                            )
-                    else:
-                        st.info(
-                            "Email sending is not configured. "
-                            "Your message has been recorded but not sent."
-                        )
+                if success:
+                    st.success("Your message has been sent successfully!")
                 else:
-                    st.success("Your message has been recorded!")
-                
-                return form_data
+                    st.warning(
+                        "There was an issue sending your message. "
+                        "Please try again later or contact me directly."
+                    )
+            else:
+                st.info(
+                    "Email sending is not configured. "
+                    "Your message has been recorded but not sent."
+                )
+        else:
+            st.success("Your message has been recorded!")
         
-        return {} 
+        return form_data
+    
+    return {} 

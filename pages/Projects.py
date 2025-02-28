@@ -7,10 +7,13 @@ import json
 import os
 from typing import List, Dict, Any
 from config import SITE_CONFIG
-from utils.display_utils import create_project_card
 from utils.github_utils import fetch_github_repos
 from components.footer import create_footer
 from pathlib import Path
+from streamlit_shadcn_ui import card
+from streamlit_shadcn_ui import button
+from streamlit_shadcn_ui.py_components.badges import badges
+from streamlit_shadcn_ui import tabs
 
 
 # Sample projects data (in a real app, this would come from a JSON file or database)
@@ -57,6 +60,45 @@ def load_projects() -> List[Dict[str, Any]]:
         return SAMPLE_PROJECTS
 
 
+def create_project_card(project: Dict[str, Any]) -> None:
+    """
+    Create a card for displaying a project using shadcn-ui.
+    
+    Args:
+        project: Dictionary with project details
+    """
+    with card(key=f"project_{project['title'].lower().replace(' ', '_')}", class_name="mb-4"):
+        st.markdown(f"### {project.get('title', 'Project Title')}")
+        
+        # Project description
+        st.markdown(project.get('description', ''))
+        
+        # Display tags as badges
+        if 'tags' in project and project['tags']:
+            st.markdown("**Technologies:**")
+            badge_list = [(tag, "outline") for tag in project['tags']]
+            badges(badge_list, key=f"tags_{project['title'].lower().replace(' ', '_')}")
+        
+        # Display creation info
+        if 'created_by' in project:
+            creator = project['created_by']
+            if creator == "Human":
+                badges([("Human Made", "default")], key=f"creator_{project['title'].lower().replace(' ', '_')}")
+            elif creator == "ChatGPT":
+                badges([("ChatGPT Made", "secondary")], key=f"creator_{project['title'].lower().replace(' ', '_')}")
+            elif creator == "Claude":
+                badges([("Claude Made", "outline")], key=f"creator_{project['title'].lower().replace(' ', '_')}")
+        
+        # Display links as buttons
+        col1, col2 = st.columns(2)
+        with col1:
+            if 'demo_url' in project and project['demo_url']:
+                button("View Demo", variant="default", size="sm", key=f"demo_{project['title'].lower().replace(' ', '_')}")
+        with col2:
+            if 'github_url' in project and project['github_url']:
+                button("View Code", variant="outline", size="sm", key=f"code_{project['title'].lower().replace(' ', '_')}")
+
+
 def main():
     """Main function to render the Projects page."""
     # Page configuration
@@ -82,58 +124,19 @@ def main():
         if "created_by" not in project:
             project["created_by"] = "Human"  # Default value
     
-    # Top navigation for filtering by creation method
-    st.markdown("""
-    <style>
-    .creation-nav {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin-bottom: 30px;
-    }
-    .creation-btn {
-        background-color: #f0f2f6;
-        color: #4257b2;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-    .creation-btn.active {
-        background-color: #4257b2;
-        color: white;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-    col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
-    
-    with col1:
-        all_btn = st.button("All", key="all_btn", use_container_width=True)
-    
-    with col2:
-        chatgpt_btn = st.button("ChatGPT Made", key="chatgpt_btn", use_container_width=True)
-    
-    with col3:
-        claude_btn = st.button("Claude Made", key="claude_btn", use_container_width=True)
-    
-    with col4:
-        human_btn = st.button("Human Made", key="human_btn", use_container_width=True)
+    # Top navigation using tabs component
+    tab_values = ["All", "ChatGPT Made", "Claude Made", "Human Made"]
+    selected_tab = tabs(
+        tab_values,
+        key="project_tabs",
+        default_value="All"
+    )
     
     # Store the selected filter in session state
     if "creation_filter" not in st.session_state:
-        st.session_state.creation_filter = "All"
-    
-    if all_btn:
-        st.session_state.creation_filter = "All"
-    elif chatgpt_btn:
-        st.session_state.creation_filter = "ChatGPT"
-    elif claude_btn:
-        st.session_state.creation_filter = "Claude"
-    elif human_btn:
-        st.session_state.creation_filter = "Human"
+        st.session_state.creation_filter = selected_tab
+    else:
+        st.session_state.creation_filter = selected_tab
     
     # Show current filter
     st.markdown(f"**Currently showing:** {st.session_state.creation_filter} projects")
@@ -166,9 +169,10 @@ def main():
     
     # Apply creation filter
     if st.session_state.creation_filter != "All":
+        creation_type = st.session_state.creation_filter.replace(" Made", "")
         filtered_projects = [
             project for project in filtered_projects
-            if project.get("created_by") == st.session_state.creation_filter
+            if project.get("created_by") == creation_type
         ]
     
     # Apply tag filter
@@ -206,17 +210,16 @@ def main():
                 
                 if repos:
                     for repo in repos[:5]:  # Show top 5 repos
-                        with st.container():
-                            st.subheader(repo["name"])
-                            st.markdown(repo["description"])
+                        with card(key=f"repo_{repo['name']}", class_name="mb-3"):
+                            st.markdown(f"### {repo['name']}")
+                            st.markdown(repo["description"] or "No description available")
                             
                             col1, col2, col3 = st.columns(3)
                             col1.metric("Stars", repo["stars"])
                             col2.metric("Forks", repo["forks"])
                             col3.metric("Language", repo["language"] or "N/A")
                             
-                            st.markdown(f"[View Repository]({repo['html_url']})")
-                            st.markdown("---")
+                            button("View Repository", variant="default", size="sm", key=f"view_repo_{repo['name']}")
                     
                     st.markdown(f"[View all repositories]({SITE_CONFIG['github']})")
                 else:
