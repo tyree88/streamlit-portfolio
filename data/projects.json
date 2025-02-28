@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Data Analysis Dashboard",
+    "description": "Interactive dashboard for visualizing sales data and trends. This project uses Streamlit to create an intuitive interface for exploring sales metrics, customer demographics, and product performance.",
+    "tags": ["Python", "Streamlit", "Pandas", "Plotly"],
+    "github_url": "https://github.com/yourusername/data-dashboard",
+    "demo_url": "https://data-dashboard-demo.streamlit.app",
+    "created_by": "Human"
+  },
+  {
+    "title": "Machine Learning Model",
+    "description": "Predictive model for customer churn using ensemble methods. This project implements various machine learning algorithms to predict which customers are likely to cancel their subscription, helping businesses take proactive retention measures.",
+    "tags": ["Python", "Scikit-learn", "XGBoost", "Pandas"],
+    "github_url": "https://github.com/yourusername/churn-prediction",
+    "demo_url": "",
+    "created_by": "ChatGPT"
+  },
+  {
+    "title": "Natural Language Processing App",
+    "description": "Text analysis tool for sentiment analysis and entity recognition. This application processes text input to identify sentiment, extract named entities, and provide insights into the emotional tone of the content.",
+    "tags": ["Python", "NLTK", "spaCy", "Streamlit"],
+    "github_url": "https://github.com/yourusername/nlp-app",
+    "demo_url": "https://nlp-app-demo.streamlit.app",
+    "created_by": "Claude"
+  },
+  {
+    "title": "Time Series Forecasting",
+    "description": "Forecasting model for predicting future sales and inventory needs. This project uses statistical methods and machine learning to analyze historical data and generate accurate predictions for business planning.",
+    "tags": ["Python", "Prophet", "Pandas", "Matplotlib"],
+    "github_url": "https://github.com/yourusername/time-series-forecasting",
+    "demo_url": "",
+    "created_by": "Human"
+  },
+  {
+    "title": "Image Classification API",
+    "description": "REST API for classifying images using deep learning models. This service allows users to upload images and receive classification results using pre-trained convolutional neural networks.",
+    "tags": ["Python", "TensorFlow", "FastAPI", "Docker"],
+    "github_url": "https://github.com/yourusername/image-classification-api",
+    "demo_url": "https://image-classifier-demo.herokuapp.com",
+    "created_by": "ChatGPT"
+  },
+  {
+    "title": "Data Visualization Portfolio",
+    "description": "Collection of interactive data visualizations created with various tools and libraries. This showcase demonstrates different visualization techniques for effectively communicating insights from complex datasets.",
+    "tags": ["Python", "D3.js", "Plotly", "Tableau"],
+    "github_url": "https://github.com/yourusername/data-viz-portfolio",
+    "demo_url": "https://data-viz-portfolio.netlify.app",
+    "created_by": "Claude"
+  }
+] 

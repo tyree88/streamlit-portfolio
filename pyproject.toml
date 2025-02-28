@@ -4,4 +4,25 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "altair>=5.5.0",
+    "httpx>=0.28.1",
+    "joblib>=1.4.2",
+    "matplotlib>=3.10.1",
+    "numpy>=2.2.3",
+    "pandas>=2.2.3",
+    "pillow>=11.1.0",
+    "plotly>=6.0.0",
+    "prefect>=3.2.8",
+    "prefect-sqlalchemy>=0.5.2",
+    "pydantic>=2.10.6",
+    "python-dotenv>=1.0.1",
+    "requests>=2.32.3",
+    "scikit-learn>=1.6.1",
+    "sqlalchemy>=2.0.38",
+    "streamlit>=1.42.2",
+    "streamlit-extras>=0.5.5",
+    "streamlit-lottie>=0.0.5",
+    "streamlit-option-menu>=0.4.0",
+    "streamlit-shadcn-ui>=0.1.18",
+]
