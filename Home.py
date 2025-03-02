@@ -65,11 +65,12 @@ def main():
         width=150,
     )
     st.sidebar.title(SITE_CONFIG.get("name", SITE_CONFIG.get("author", "Portfolio")))
+    st.sidebar.markdown(SITE_CONFIG["subtitle"])
     
     
     # Social links in sidebar
     st.sidebar.markdown("### Connect")
-    social_cols = st.sidebar.columns(4)
+    social_cols = st.sidebar.columns(3)
     
     if "github" in SITE_CONFIG and SITE_CONFIG["github"]:
         social_cols[0].markdown(f"[![GitHub](<https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white>)]({SITE_CONFIG['github']})")
@@ -77,15 +78,12 @@ def main():
     if "linkedin" in SITE_CONFIG and SITE_CONFIG["linkedin"]:
         social_cols[1].markdown(f"[![LinkedIn](<https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white>)]({SITE_CONFIG['linkedin']})")
     
-    if "twitter" in SITE_CONFIG and SITE_CONFIG["twitter"]:
-        social_cols[2].markdown(f"[![Twitter](<https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white>)]({SITE_CONFIG['twitter']})")
-    
-    if "email" in SITE_CONFIG and SITE_CONFIG["email"]:
-        social_cols[3].markdown(f"[![Email](<https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white>)](mailto:{SITE_CONFIG['email']})")
+    if "bluesky" in SITE_CONFIG and SITE_CONFIG["bluesky"]:
+        social_cols[2].markdown(f"[![🦋 Bluesky](<https://img.shields.io/badge/Bluesky-0285FF?style=for-the-badge&logo=bluesky&logoColor=white>)]({SITE_CONFIG['bluesky']})")
     
     # Main content
     # Hero section with card
-    with card(key="hero_card", class_name="mb-4"):
+    with card(key="hero_card"):
         st.markdown(f"<h1 class='main-header'>{SITE_CONFIG['title']}</h1>", unsafe_allow_html=True)
         st.markdown(f"<p class='subheader'>{SITE_CONFIG['subtitle']}</p>", unsafe_allow_html=True)
         
@@ -94,7 +92,8 @@ def main():
             st.markdown(SITE_CONFIG["description"])
         with col2:
             button("View Projects", variant="default", size="lg", class_name="w-full mb-2", key="view_projects_btn")
-            button("Contact Me", variant="outline", size="lg", class_name="w-full", key="contact_me_btn")
+            if button("View About", variant="outline", size="lg", class_name="w-full", key="view_about_btn"):
+                st.switch_page("pages/About.py")
     
     # Skills section
     st.markdown("<h2 class='section-header'>Skills & Expertise</h2>", unsafe_allow_html=True)
@@ -145,14 +144,14 @@ def main():
             button("View Project", variant="default", size="sm", key="view_project2_btn")
     
     # Call to action
-    st.markdown("<h2 class='section-header'>Let's Work Together</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='section-header'>Let's Connect</h2>", unsafe_allow_html=True)
     
     with card(key="cta_card"):
         col1, col2 = st.columns([3, 1])
         with col1:
-            st.markdown("I'm always open to new opportunities and collaborations. Feel free to reach out if you'd like to discuss a project or just connect!")
+            st.markdown("I'm always open to new opportunities and collaborations. Feel free to connect with me on social media to discuss projects or just to network!")
         with col2:
-            button("Contact Me", variant="default", size="lg", class_name="w-full", key="contact_cta_btn")
+            button("View About", variant="default", size="lg", class_name="w-full", key="about_cta_btn")
     
     # Footer
     create_footer()

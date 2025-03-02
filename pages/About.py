@@ -7,6 +7,7 @@ from config import SITE_CONFIG, CONTENT_CONFIG
 from utils.display_utils import create_timeline, display_skills
 from utils.data_utils import prepare_skills_data
 from components.footer import create_footer
+from components.contact_form import contact_info
 from streamlit_shadcn_ui import card
 from streamlit_shadcn_ui import button
 from streamlit_shadcn_ui.py_components.badges import badges
@@ -27,14 +28,13 @@ def main():
     st.title("About Me")
     
     # Profile section
-    with card(key="profile_card", class_name="mb-4"):
+    with card(key="profile_card"):
         col1, col2 = st.columns([1, 3])
         
         with col1:
             # Use avatar component instead of image
             avatar(
                 SITE_CONFIG.get("profile_pic", "https://via.placeholder.com/150"),
-                size="xl",
                 key="profile_avatar"
             )
         
@@ -60,7 +60,7 @@ def main():
     # Skills section
     st.header("Skills")
     
-    with card(key="skills_card", class_name="mb-4"):
+    with card(key="skills_card"):
         # Prepare skills data
         skills_df = prepare_skills_data(CONTENT_CONFIG["skills"])
         
@@ -70,7 +70,7 @@ def main():
     # Experience section
     st.header("Experience")
     
-    with card(key="experience_card", class_name="mb-4"):
+    with card(key="experience_card"):
         for i, experience in enumerate(CONTENT_CONFIG["experience"]):
             col1, col2 = st.columns([1, 3])
             
@@ -89,21 +89,63 @@ def main():
     # Education section
     st.header("Education")
     
-    with card(key="education_card", class_name="mb-4"):
+    with card(key="education_card"):
         for i, education in enumerate(CONTENT_CONFIG["education"]):
             col1, col2 = st.columns([1, 3])
             
             with col1:
-                st.markdown(f"**{education.get('period', '')}**")
+                st.markdown(f"**{education.get('year', '')}**")
                 badges([(education.get('institution', ''), "outline")], 
                        key=f"institution_{i}")
             
             with col2:
-                st.markdown(f"### {education.get('title', '')}")
+                st.markdown(f"### {education.get('degree', '')}")
                 st.markdown(education.get('description', ''))
             
             if i < len(CONTENT_CONFIG["education"]) - 1:
                 st.markdown("---")
+    
+    # Contact section
+    st.header("Connect With Me")
+    
+    with card(key="contact_card"):
+        col1, col2 = st.columns([1, 1])
+        
+        with col1:
+            st.markdown("""
+            ## Get In Touch
+            
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+            
+            Feel free to reach out to me through any of the social platforms listed below:
+            """)
+            
+            # Social badges
+            badge_list = []
+            
+            # LinkedIn badge
+            if "linkedin" in SITE_CONFIG and SITE_CONFIG["linkedin"]:
+                badge_list.append(("💼 LinkedIn", "outline"))
+                
+            # GitHub badge
+            if "github" in SITE_CONFIG and SITE_CONFIG["github"]:
+                badge_list.append(("💻 GitHub", "outline"))
+                
+            # Bluesky badge
+            if "bluesky" in SITE_CONFIG and SITE_CONFIG["bluesky"]:
+                badge_list.append(("🦋 Bluesky", "outline"))
+            
+            if badge_list:
+                badges(badge_list, key="social_badges")
+        
+        with col2:
+            # Contact info component
+            contact_info(
+                github_url=SITE_CONFIG.get("github"),
+                linkedin_url=SITE_CONFIG.get("linkedin"),
+                bluesky_url=SITE_CONFIG.get("bluesky"),
+                key="about_page"
+            )
     
     # Footer
     create_footer()

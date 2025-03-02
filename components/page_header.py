@@ -5,29 +5,23 @@ Page header component for the Streamlit portfolio.
 import streamlit as st
 from typing import Optional
 from config import SITE_CONFIG
-from streamlit_shadcn_ui import theme
 
 
 def setup_page(
     page_title: Optional[str] = None,
     page_icon: Optional[str] = None,
     layout: str = "wide",
-    initial_sidebar_state: str = "expanded",
-    theme_preset: str = "light"
+    initial_sidebar_state: str = "expanded"
 ) -> None:
     """
-    Set up the page configuration and theme.
+    Set up the page configuration.
     
     Args:
         page_title: Title of the page
         page_icon: Icon for the page
         layout: Layout of the page
         initial_sidebar_state: Initial state of the sidebar
-        theme_preset: Theme preset to use
     """
-    # Set theme
-    theme(preset=theme_preset)
-    
     # Determine page title
     if page_title:
         full_title = f"{page_title} | {SITE_CONFIG['title']}"
@@ -75,5 +69,5 @@ def create_sidebar_profile() -> None:
         SITE_CONFIG.get("profile_pic", "https://via.placeholder.com/150"),
         width=150,
     )
-    st.sidebar.title(SITE_CONFIG["name"])
+    st.sidebar.title(SITE_CONFIG.get("name", SITE_CONFIG.get("author", "Portfolio")))
     st.sidebar.markdown(SITE_CONFIG["tagline"]) 

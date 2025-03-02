@@ -16,20 +16,20 @@ def create_timeline_item(
     show_divider: bool = True
 ) -> None:
     """
-    Create a single timeline item for experience or education.
+    Create a timeline item with title, period, organization, and description.
     
     Args:
-        title: Title of the position or degree
-        period: Time period (e.g., "2020-2022")
-        organization: Name of the company or institution
-        description: Description of the experience or education
+        title: Title of the timeline item
+        period: Period of the timeline item
+        organization: Organization of the timeline item
+        description: Description of the timeline item
         show_divider: Whether to show a divider after the item
     """
     col1, col2 = st.columns([1, 3])
     
     with col1:
         st.markdown(f"**{period}**")
-        badges([(organization, "outline")], key=f"org_{organization.lower().replace(' ', '_')}")
+        badges([(organization, "outline")], key=f"org_{title.lower().replace(' ', '_')}")
     
     with col2:
         st.markdown(f"### {title}")
@@ -45,8 +45,7 @@ def create_timeline(
     period_key: str = "period",
     organization_key: str = "company",
     description_key: str = "description",
-    key: str = "timeline_card",
-    class_name: str = "mb-4"
+    key: str = "timeline_card"
 ) -> None:
     """
     Create a timeline of items (experience, education, etc.) in a card.
@@ -58,9 +57,8 @@ def create_timeline(
         organization_key: Key for the organization in the item dictionary
         description_key: Key for the description in the item dictionary
         key: Unique key for the component
-        class_name: Additional CSS class names
     """
-    with card(key=key, class_name=class_name):
+    with card(key=key):
         for i, item in enumerate(items):
             create_timeline_item(
                 title=item.get(title_key, ""),
@@ -73,41 +71,41 @@ def create_timeline(
 
 def create_experience_section(
     experience_items: List[Dict[str, Any]],
-    title: str = "Experience",
-    key: str = "experience_card"
+    key: str = "experience_timeline"
 ) -> None:
     """
-    Create an experience section with a header and timeline.
+    Create an experience timeline section.
     
     Args:
         experience_items: List of dictionaries with experience items
-        title: Title of the section
         key: Unique key for the component
     """
-    st.header(title)
     create_timeline(
         items=experience_items,
+        title_key="title",
+        period_key="period",
         organization_key="company",
+        description_key="description",
         key=key
     )
 
 
 def create_education_section(
     education_items: List[Dict[str, Any]],
-    title: str = "Education",
-    key: str = "education_card"
+    key: str = "education_timeline"
 ) -> None:
     """
-    Create an education section with a header and timeline.
+    Create an education timeline section.
     
     Args:
         education_items: List of dictionaries with education items
-        title: Title of the section
         key: Unique key for the component
     """
-    st.header(title)
     create_timeline(
         items=education_items,
+        title_key="title",
+        period_key="period",
         organization_key="institution",
+        description_key="description",
         key=key
     ) 

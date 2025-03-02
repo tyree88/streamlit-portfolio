@@ -24,17 +24,14 @@ def create_social_badges(class_name: str = "") -> None:
     if "linkedin" in SITE_CONFIG and SITE_CONFIG["linkedin"]:
         social_links.append(("LinkedIn", "outline"))
     
-    if "twitter" in SITE_CONFIG and SITE_CONFIG["twitter"]:
-        social_links.append(("Twitter", "outline"))
-    
-    if "email" in SITE_CONFIG and SITE_CONFIG["email"]:
-        social_links.append(("Email", "outline"))
+    if "bluesky" in SITE_CONFIG and SITE_CONFIG["bluesky"]:
+        social_links.append(("🦋 Bluesky", "outline"))
     
     if social_links:
         badges(social_links, key="social_badges")
 
 
-def create_social_buttons(columns: int = 4, size: str = "sm", class_name: str = "") -> None:
+def create_social_buttons(columns: int = 3, size: str = "sm", class_name: str = "") -> None:
     """
     Create social media buttons.
     
@@ -57,11 +54,7 @@ def create_social_buttons(columns: int = 4, size: str = "sm", class_name: str = 
             button("LinkedIn", variant="outline", size=size, key="linkedin_btn", class_name=class_name)
         col_idx += 1
     
-    if "twitter" in SITE_CONFIG and SITE_CONFIG["twitter"]:
+    if "bluesky" in SITE_CONFIG and SITE_CONFIG["bluesky"]:
         with social_cols[col_idx % columns]:
-            button("Twitter", variant="outline", size=size, key="twitter_btn", class_name=class_name)
-        col_idx += 1
-    
-    if "email" in SITE_CONFIG and SITE_CONFIG["email"]:
-        with social_cols[col_idx % columns]:
-            button("Email", variant="outline", size=size, key="email_btn", class_name=class_name) 
+            button("Bluesky", variant="outline", size=size, key="bluesky_btn", class_name=class_name)
+        col_idx += 1 

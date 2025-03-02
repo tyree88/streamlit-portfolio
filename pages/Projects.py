@@ -67,7 +67,7 @@ def create_project_card(project: Dict[str, Any]) -> None:
     Args:
         project: Dictionary with project details
     """
-    with card(key=f"project_{project['title'].lower().replace(' ', '_')}", class_name="mb-4"):
+    with card(key=f"project_{project['title'].lower().replace(' ', '_')}"):
         st.markdown(f"### {project.get('title', 'Project Title')}")
         
         # Project description
@@ -210,7 +210,7 @@ def main():
                 
                 if repos:
                     for repo in repos[:5]:  # Show top 5 repos
-                        with card(key=f"repo_{repo['name']}", class_name="mb-3"):
+                        with card(key=f"repo_{repo['name']}"):
                             st.markdown(f"### {repo['name']}")
                             st.markdown(repo["description"] or "No description available")
                             

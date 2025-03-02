@@ -3,7 +3,7 @@ Components package for the Streamlit portfolio.
 """
 
 from components.footer import create_footer
-from components.contact_form import contact_form
+from components.contact_form import contact_info
 from components.navbar import create_navbar
 from components.project_card import create_project_card, create_featured_projects
 from components.skill_card import create_skill_card, create_skills_section

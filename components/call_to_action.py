@@ -1,69 +1,51 @@
 """
-Call-to-action component for the Streamlit portfolio.
+Call to action component for the Streamlit portfolio.
 """
 
 import streamlit as st
 from typing import Optional
-from streamlit_shadcn_ui.card import card
-from streamlit_shadcn_ui.button import button
+from streamlit_shadcn_ui import card
+from streamlit_shadcn_ui import button
 
 
 def create_call_to_action(
-    title: str = "Let's Work Together",
+    title: str = "Let's Connect",
     message: Optional[str] = None,
-    button_text: str = "Contact Me",
-    button_key: str = "cta_btn",
-    use_card: bool = True,
-    class_name: str = "mb-4"
+    button_text: str = "View About",
+    button_variant: str = "default",
+    button_size: str = "lg",
+    key: str = "cta"
 ) -> None:
     """
-    Create a call-to-action section with a title, message, and button.
+    Create a call to action section with a message and button.
     
     Args:
-        title: Title of the call-to-action
+        title: Title of the call to action
         message: Message to display
         button_text: Text for the button
-        button_key: Key for the button
-        use_card: Whether to use a card for the call-to-action
-        class_name: Additional CSS class names
+        button_variant: Variant of the button
+        button_size: Size of the button
+        key: Unique key for the component
     """
     # Default message if not provided
-    if not message:
-        message = (
-            "I'm always open to new opportunities and collaborations. "
-            "Feel free to reach out if you'd like to discuss a project or just connect!"
-        )
+    if message is None:
+        message = """
+        I'm always open to new opportunities and collaborations. 
+        Feel free to connect with me on social media to discuss projects or just to network!
+        """
     
+    # Display title
     st.markdown(f"<h2 class='section-header'>{title}</h2>", unsafe_allow_html=True)
     
-    if use_card:
-        with card(key="cta_card", bordered=True, class_name=class_name):
-            _create_cta_content(message, button_text, button_key)
-    else:
-        _create_cta_content(message, button_text, button_key)
-
-
-def _create_cta_content(
-    message: str,
-    button_text: str,
-    button_key: str
-) -> None:
-    """
-    Create the content for the call-to-action.
-    
-    Args:
-        message: Message to display
-        button_text: Text for the button
-        button_key: Key for the button
-    """
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        st.markdown(message)
-    with col2:
-        button(
-            button_text, 
-            variant="default", 
-            size="lg", 
-            class_name="w-full", 
-            key=button_key
-        ) 
+    with card(key="cta_card"):
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            st.markdown(message)
+        with col2:
+            button(
+                button_text, 
+                variant=button_variant, 
+                size=button_size, 
+                class_name="w-full", 
+                key=f"{key}_btn"
+            ) 

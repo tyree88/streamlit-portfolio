@@ -13,8 +13,7 @@ def create_project_card(
     project: Dict[str, Any],
     key_prefix: str = "project",
     show_creator: bool = True,
-    show_buttons: bool = True,
-    class_name: str = "mb-4"
+    show_buttons: bool = True
 ) -> None:
     """
     Create a card for displaying a project using shadcn-ui.
@@ -24,11 +23,10 @@ def create_project_card(
         key_prefix: Prefix for the component keys
         show_creator: Whether to show the creator badge
         show_buttons: Whether to show action buttons
-        class_name: Additional CSS class names
     """
     project_key = f"{key_prefix}_{project['title'].lower().replace(' ', '_')}"
     
-    with card(key=project_key, class_name=class_name):
+    with card(key=project_key):
         st.markdown(f"### {project.get('title', 'Project Title')}")
         
         # Project description
@@ -78,7 +76,7 @@ def create_featured_projects(
     show_creator: bool = False
 ) -> None:
     """
-    Create a featured projects section with multiple project cards.
+    Create a section with featured projects.
     
     Args:
         projects: List of project dictionaries
@@ -86,13 +84,14 @@ def create_featured_projects(
         columns: Number of columns to display projects in
         show_creator: Whether to show the creator badge
     """
-    project_cols = st.columns(columns)
+    # Create columns
+    cols = st.columns(columns)
     
+    # Add project cards to columns
     for i, project in enumerate(projects[:num_projects]):
-        with project_cols[i % columns]:
+        with cols[i % columns]:
             create_project_card(
-                project,
-                key_prefix="featured",
-                show_creator=show_creator,
-                class_name="h-full"
+                project=project,
+                key_prefix=f"featured_{i}",
+                show_creator=show_creator
             ) 

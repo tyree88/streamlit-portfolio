@@ -12,8 +12,7 @@ def create_skill_card(
     title: str,
     description: str,
     skills: List[str],
-    key: str,
-    class_name: str = ""
+    key: str
 ) -> None:
     """
     Create a card for displaying a skill category.
@@ -23,9 +22,8 @@ def create_skill_card(
         description: Description of the skill category
         skills: List of skills to display as badges
         key: Unique key for the component
-        class_name: Additional CSS class names
     """
-    with card(key=key, class_name=class_name):
+    with card(key=key):
         st.markdown(f"### {title}")
         st.markdown(description)
         
@@ -35,25 +33,24 @@ def create_skill_card(
 
 def create_skills_section(
     skills_data: List[Dict[str, Any]],
-    columns: int = 3,
-    class_name: str = ""
+    columns: int = 3
 ) -> None:
     """
-    Create a skills section with multiple skill cards.
+    Create a section with multiple skill cards.
     
     Args:
         skills_data: List of skill category dictionaries
         columns: Number of columns to display skills in
-        class_name: Additional CSS class names
     """
-    skill_cols = st.columns(columns)
+    # Create columns
+    cols = st.columns(columns)
     
+    # Add skill cards to columns
     for i, skill in enumerate(skills_data):
-        with skill_cols[i % columns]:
+        with cols[i % columns]:
             create_skill_card(
-                title=skill.get("title", "Skill Category"),
+                title=skill.get("title", f"Skill Category {i+1}"),
                 description=skill.get("description", ""),
                 skills=skill.get("skills", []),
-                key=f"skill_{i}",
-                class_name=class_name
+                key=f"skill_{i}"
             ) 

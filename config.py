@@ -6,9 +6,9 @@ Configuration settings for the Streamlit portfolio application.
 SITE_CONFIG = {
     "title": "My Portfolio",
     "subtitle": "Data Scientist & Developer",
+    "description": "I'm a data scientist and developer with a passion for building innovative solutions. I love solving complex problems and building innovative solutions.",
     "icon": "🚀",
     "author": "Tyree Pearson",
-    "email": "tyreepearson88@gmail.com",
     "github": "https://github.com/tyree88",
     "linkedin": "https://linkedin.com/in/tyreepearson",
     "bluesky": "https://bsky.app/profile/tyrendie.bsky.social",

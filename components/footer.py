@@ -12,7 +12,7 @@ def create_footer():
     """
     st.markdown("---")
     
-    cols = st.columns([1, 1, 1, 1])
+    cols = st.columns([1, 1, 1])
     
     # GitHub link
     if "github" in SITE_CONFIG and SITE_CONFIG["github"]:
@@ -30,19 +30,11 @@ def create_footer():
             unsafe_allow_html=True
         )
     
-    # Twitter link
-    if "twitter" in SITE_CONFIG and SITE_CONFIG.get("twitter"):
+    # Bluesky link
+    if "bluesky" in SITE_CONFIG and SITE_CONFIG.get("bluesky"):
         cols[2].markdown(
-            f'<a href="{SITE_CONFIG["twitter"]}" target="_blank">'
-            f'<i class="fab fa-twitter" style="font-size: 1.5rem; color: #1da1f2;"></i></a>',
-            unsafe_allow_html=True
-        )
-    
-    # Email link
-    if "email" in SITE_CONFIG and SITE_CONFIG["email"]:
-        cols[3].markdown(
-            f'<a href="mailto:{SITE_CONFIG["email"]}">'
-            f'<i class="fas fa-envelope" style="font-size: 1.5rem; color: #333;"></i></a>',
+            f'<a href="{SITE_CONFIG["bluesky"]}" target="_blank">'
+            f'<span style="font-size: 1.5rem; color: #0285FF;">🦋</span></a>',
             unsafe_allow_html=True
         )
     
