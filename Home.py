@@ -59,27 +59,7 @@ def main():
     
     # Load custom CSS
     load_css()
-    
-    # Sidebar
-    st.sidebar.image(
-        SITE_CONFIG.get("profile_pic", "https://via.placeholder.com/150"),
-        width=150,
-    )
-    st.sidebar.title(SITE_CONFIG.get("name", SITE_CONFIG.get("author", "Portfolio")))
-    st.sidebar.markdown(SITE_CONFIG["subtitle"])
-    
-    
-    # Social links in sidebar
-    st.sidebar.markdown("### Connect")
-    create_social_links(
-        github_url=SITE_CONFIG.get("github"),
-        linkedin_url=SITE_CONFIG.get("linkedin"),
-        bluesky_url=SITE_CONFIG.get("bluesky"),
-        key="sidebar",
-        show_header=False,
-        show_description=False
-    )
-    
+
     # Main content
     # Hero section with card
     with card(key="hero_card"):
@@ -141,17 +121,8 @@ def main():
             st.markdown("Predictive model for customer churn using ensemble methods.")
             st.markdown("**Technologies:** Python, Scikit-learn, XGBoost, Pandas")
             button("View Project", variant="default", size="sm", key="view_project2_btn")
+
     
-    # Call to action
-    st.markdown("<h2 class='section-header'>Let's Connect</h2>", unsafe_allow_html=True)
-    
-    with card(key="cta_card"):
-        col1, col2 = st.columns([3, 1])
-        with col1:
-            st.markdown("I'm always open to new opportunities and collaborations. Feel free to connect with me on social media to discuss projects or just to network!")
-        with col2:
-            if button("View About", variant="default", size="lg", class_name="w-full", key="about_cta_btn"):
-                st.switch_page("pages/About.py")
     
     # Footer
     create_footer()
