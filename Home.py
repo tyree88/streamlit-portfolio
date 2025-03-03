@@ -7,6 +7,7 @@ import os
 from config import SITE_CONFIG
 from components.footer import create_footer
 from components.contact_form import create_social_links
+from components.navbar import create_navbar
 from streamlit_shadcn_ui import card
 from streamlit_shadcn_ui import button
 from streamlit_shadcn_ui.py_components.badges import badges
@@ -59,7 +60,10 @@ def main():
     
     # Load custom CSS
     load_css()
-
+    
+    # Navigation
+    create_navbar(current_page="home")
+    
     # Main content
     # Hero section with card
     with card(key="hero_card"):
@@ -121,8 +125,6 @@ def main():
             st.markdown("Predictive model for customer churn using ensemble methods.")
             st.markdown("**Technologies:** Python, Scikit-learn, XGBoost, Pandas")
             button("View Project", variant="default", size="sm", key="view_project2_btn")
-
-    
     
     # Footer
     create_footer()

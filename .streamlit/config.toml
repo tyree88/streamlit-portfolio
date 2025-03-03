@@ -1,16 +1,26 @@
 [theme]
-primaryColor = "#4257b2"
+primaryColor = "#0285FF"
 backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f0f2f6"
-textColor = "#333333"
-font = "sans serif"
+secondaryBackgroundColor = "#f1f5f9"
+textColor = "#020817"
+font = "Inter"
 
 [server]
 enableCORS = false
-enableXsrfProtection = true
+enableXsrfProtection = false
 
 [browser]
 gatherUsageStats = false
+
+[deprecation]
+showfileUploaderEncoding = false
+
+[global]
+developmentMode = false
+
+[client]
+toolbarMode = "minimal"
+showErrorDetails = false
 
 [runner]
 fastReruns = true

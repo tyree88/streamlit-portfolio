@@ -1,92 +1,167 @@
 /* Custom CSS for Streamlit Portfolio with shadcn-ui */
 
+/* Main theme colors and fonts */
+:root {
+    --background: #ffffff;
+    --foreground: #020817;
+    --card: #ffffff;
+    --card-foreground: #020817;
+    --popover: #ffffff;
+    --popover-foreground: #020817;
+    --primary: #0285FF;
+    --primary-foreground: #ffffff;
+    --secondary: #f1f5f9;
+    --secondary-foreground: #0f172a;
+    --muted: #f1f5f9;
+    --muted-foreground: #64748b;
+    --accent: #f1f5f9;
+    --accent-foreground: #0f172a;
+    --destructive: #ff0000;
+    --destructive-foreground: #ffffff;
+    --border: #e2e8f0;
+    --input: #e2e8f0;
+    --ring: #0285FF;
+    --radius: 0.5rem;
+}
+
 /* Global styles */
 .main {
     padding: 1rem 2rem;
 }
 
-.stApp {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: 600;
-    color: #111827;
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--background);
+    color: var(--foreground);
 }
 
+/* Headers */
 .main-header {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
     font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    margin-bottom: 1rem;
+    color: var(--foreground);
 }
 
 .subheader {
     font-size: 1.5rem;
-    color: #4257b2;
-    margin-bottom: 2rem;
     font-weight: 500;
+    line-height: 1.4;
+    color: var(--primary);
+    margin-bottom: 2rem;
 }
 
 .section-header {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1.3;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: #111827;
-    font-weight: 600;
+    color: var(--foreground);
 }
 
-/* Cards and containers */
-.highlight {
-    background-color: #f9fafb;
+/* Cards */
+[data-testid="stCard"] {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--card);
     padding: 1.5rem;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #e5e7eb;
-}
-
-/* Sidebar customization */
-.css-1d391kg, .css-163ttbj {
-    background-color: #f9fafb;
-}
-
-/* Button styling */
-.stButton>button {
-    border-radius: 0.375rem;
-    font-weight: 500;
     transition: all 0.2s ease;
 }
 
-/* Badge styling */
+[data-testid="stCard"]:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Badges */
 .badge {
     display: inline-flex;
     align-items: center;
+    padding: 0.25rem 0.75rem;
     border-radius: 9999px;
-    font-size: 0.75rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    line-height: 1;
-    padding: 0.25rem 0.5rem;
+    line-height: 1.25rem;
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-/* Form elements */
-.stTextInput>div>div>input {
-    border-radius: 0.375rem;
+/* Navigation */
+.stApp header {
+    background-color: var(--background);
+    border-bottom: 1px solid var(--border);
 }
 
-.stTextArea>div>div>textarea {
-    border-radius: 0.375rem;
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: var(--background);
+    border-right: 1px solid var(--border);
+    padding: 2rem 1rem;
 }
 
-/* Footer styling */
+[data-testid="stSidebar"] .stMarkdown {
+    padding: 0.5rem 0;
+}
+
+/* Social Links */
+.social-links img {
+    height: 2rem;
+    transition: transform 0.2s ease;
+}
+
+.social-links img:hover {
+    transform: translateY(-2px);
+}
+
+/* Buttons */
+.stButton button {
+    font-weight: 500;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+}
+
+.stButton button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
 footer {
-    margin-top: 3rem;
-    padding-top: 1rem;
-    border-top: 1px solid #e5e7eb;
-    color: #6b7280;
-    font-size: 0.875rem;
+    margin-top: 4rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--muted-foreground);
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+}
+
+/* Add custom fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 /* Animations */
 @keyframes fadeIn {
@@ -143,22 +218,11 @@ footer {
     margin-bottom: 2rem;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+/* Form elements */
+.stTextInput>div>div>input {
+    border-radius: 0.375rem;
 }
 
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #c5c5c5;
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
+.stTextArea>div>div>textarea {
+    border-radius: 0.375rem;
 } 

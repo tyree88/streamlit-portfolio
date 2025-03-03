@@ -1,72 +1,65 @@
 """
-Navigation bar component for the Streamlit portfolio.
+Navigation component for the Streamlit portfolio.
 """
 
 import streamlit as st
-from typing import List, Dict, Any, Optional
-from streamlit_option_menu import option_menu
+from streamlit_shadcn_ui import button
+from streamlit_shadcn_ui import card
 
 
-def create_navbar(
-    menu_items: List[Dict[str, Any]],
-    default_index: int = 0,
-    orientation: str = "horizontal",
-    key: Optional[str] = None
-) -> str:
+def create_navbar(current_page: str = "home") -> None:
     """
-    Create a navigation bar using streamlit-option-menu.
+    Create a navigation bar with modern styling.
     
     Args:
-        menu_items: List of menu items with 'name' and 'icon' keys
-        default_index: Default selected index
-        orientation: 'horizontal' or 'vertical'
-        key: Optional key for the component
-        
-    Returns:
-        Selected menu item name
+        current_page: The current active page
     """
-    icons = [item.get("icon", "house") for item in menu_items]
-    labels = [item.get("name", f"Item {i+1}") for i, item in enumerate(menu_items)]
-    
-    if orientation == "horizontal":
-        selected = option_menu(
-            menu_title=None,
-            options=labels,
-            icons=icons,
-            default_index=default_index,
-            orientation="horizontal",
-            styles={
-                "container": {"padding": "0px", "background-color": "transparent"},
-                "icon": {"color": "#4257b2", "font-size": "16px"},
-                "nav-link": {
-                    "font-size": "16px",
-                    "text-align": "center",
-                    "margin": "0px",
-                    "padding": "10px",
-                    "--hover-color": "#f0f2f6",
-                },
-                "nav-link-selected": {"background-color": "#4257b2", "color": "white"},
-            },
-            key=key or "horizontal_navbar"
-        )
-    else:
-        selected = option_menu(
-            menu_title="Navigation",
-            options=labels,
-            icons=icons,
-            default_index=default_index,
-            styles={
-                "container": {"padding": "0px", "background-color": "#f0f2f6"},
-                "icon": {"color": "#4257b2", "font-size": "16px"},
-                "nav-link": {
-                    "font-size": "16px",
-                    "text-align": "left",
-                    "margin": "0px",
-                    "padding": "10px",
-                },
-                "nav-link-selected": {"background-color": "#4257b2", "color": "white"},
-            },
-            key=key or "vertical_navbar"
-        )
-    
-    return selected 
+    with card(key="navbar_card"):
+        cols = st.columns([1, 2, 1])
+        
+        with cols[1]:
+            nav_cols = st.columns(4)
+            
+            # Home button
+            with nav_cols[0]:
+                if button(
+                    "Home",
+                    variant="ghost" if current_page != "home" else "default",
+                    size="sm",
+                    class_name="w-full",
+                    key="nav_home"
+                ):
+                    st.switch_page("Home.py")
+            
+            # About button
+            with nav_cols[1]:
+                if button(
+                    "About",
+                    variant="ghost" if current_page != "about" else "default",
+                    size="sm",
+                    class_name="w-full",
+                    key="nav_about"
+                ):
+                    st.switch_page("pages/About.py")
+            
+            # Projects button
+            with nav_cols[2]:
+                if button(
+                    "Projects",
+                    variant="ghost" if current_page != "projects" else "default",
+                    size="sm",
+                    class_name="w-full",
+                    key="nav_projects"
+                ):
+                    st.switch_page("pages/Projects.py")
+            
+            # Blog button
+            with nav_cols[3]:
+                if button(
+                    "Blog",
+                    variant="ghost" if current_page != "blog" else "default",
+                    size="sm",
+                    class_name="w-full",
+                    key="nav_blog"
+                ):
+                    st.switch_page("pages/Blog.py") 

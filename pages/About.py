@@ -8,6 +8,7 @@ from utils.display_utils import create_timeline, display_skills
 from utils.data_utils import prepare_skills_data
 from components.footer import create_footer
 from components.contact_form import create_social_links
+from components.navbar import create_navbar
 from streamlit_shadcn_ui import card
 from streamlit_shadcn_ui import button
 from streamlit_shadcn_ui.py_components.badges import badges
@@ -23,6 +24,9 @@ def main():
         layout="wide",
         initial_sidebar_state="expanded",
     )
+    
+    # Navigation
+    create_navbar(current_page="about")
     
     # Header
     st.title("About Me")
@@ -61,7 +65,7 @@ def main():
             )
     
     # Skills section
-    st.header("Skills")
+    st.markdown("<h2 class='section-header'>Skills</h2>", unsafe_allow_html=True)
     
     with card(key="skills_card"):
         # Prepare skills data
@@ -71,7 +75,7 @@ def main():
         display_skills(skills_df)
     
     # Experience section
-    st.header("Experience")
+    st.markdown("<h2 class='section-header'>Experience</h2>", unsafe_allow_html=True)
     
     with card(key="experience_card"):
         for i, experience in enumerate(CONTENT_CONFIG["experience"]):
@@ -90,7 +94,7 @@ def main():
                 st.markdown("---")
     
     # Education section
-    st.header("Education")
+    st.markdown("<h2 class='section-header'>Education</h2>", unsafe_allow_html=True)
     
     with card(key="education_card"):
         for i, education in enumerate(CONTENT_CONFIG["education"]):
@@ -109,7 +113,7 @@ def main():
                 st.markdown("---")
     
     # Contact section
-    st.header("Connect With Me")
+    st.markdown("<h2 class='section-header'>Connect With Me</h2>", unsafe_allow_html=True)
     
     with card(key="contact_card"):
         st.markdown("""
