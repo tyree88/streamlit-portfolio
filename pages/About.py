@@ -7,7 +7,7 @@ from config import SITE_CONFIG, CONTENT_CONFIG
 from utils.display_utils import create_timeline, display_skills
 from utils.data_utils import prepare_skills_data
 from components.footer import create_footer
-from components.contact_form import contact_info
+from components.contact_form import create_social_links
 from streamlit_shadcn_ui import card
 from streamlit_shadcn_ui import button
 from streamlit_shadcn_ui.py_components.badges import badges
@@ -50,12 +50,15 @@ def main():
             My goal is to leverage data to create meaningful insights and impactful applications.
             """)
             
-            # Contact buttons
-            col_btn1, col_btn2, _ = st.columns([1, 1, 2])
-            with col_btn1:
-                button("GitHub", variant="default", size="sm", key="github_btn")
-            with col_btn2:
-                button("LinkedIn", variant="outline", size="sm", key="linkedin_btn")
+            # Social links
+            create_social_links(
+                github_url=SITE_CONFIG.get("github"),
+                linkedin_url=SITE_CONFIG.get("linkedin"),
+                bluesky_url=SITE_CONFIG.get("bluesky"),
+                key="profile",
+                show_header=False,
+                show_description=False
+            )
     
     # Skills section
     st.header("Skills")
@@ -109,43 +112,19 @@ def main():
     st.header("Connect With Me")
     
     with card(key="contact_card"):
-        col1, col2 = st.columns([1, 1])
+        st.markdown("""
+        ## Get In Touch
         
-        with col1:
-            st.markdown("""
-            ## Get In Touch
-            
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-            
-            Feel free to reach out to me through any of the social platforms listed below:
-            """)
-            
-            # Social badges
-            badge_list = []
-            
-            # LinkedIn badge
-            if "linkedin" in SITE_CONFIG and SITE_CONFIG["linkedin"]:
-                badge_list.append(("💼 LinkedIn", "outline"))
-                
-            # GitHub badge
-            if "github" in SITE_CONFIG and SITE_CONFIG["github"]:
-                badge_list.append(("💻 GitHub", "outline"))
-                
-            # Bluesky badge
-            if "bluesky" in SITE_CONFIG and SITE_CONFIG["bluesky"]:
-                badge_list.append(("🦋 Bluesky", "outline"))
-            
-            if badge_list:
-                badges(badge_list, key="social_badges")
+        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+        Feel free to connect with me on social media to discuss projects or just to network!
+        """)
         
-        with col2:
-            # Contact info component
-            contact_info(
-                github_url=SITE_CONFIG.get("github"),
-                linkedin_url=SITE_CONFIG.get("linkedin"),
-                bluesky_url=SITE_CONFIG.get("bluesky"),
-                key="about_page"
-            )
+        create_social_links(
+            github_url=SITE_CONFIG.get("github"),
+            linkedin_url=SITE_CONFIG.get("linkedin"),
+            bluesky_url=SITE_CONFIG.get("bluesky"),
+            key="contact"
+        )
     
     # Footer
     create_footer()

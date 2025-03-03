@@ -6,6 +6,7 @@ import streamlit as st
 import os
 from config import SITE_CONFIG
 from components.footer import create_footer
+from components.contact_form import create_social_links
 from streamlit_shadcn_ui import card
 from streamlit_shadcn_ui import button
 from streamlit_shadcn_ui.py_components.badges import badges
@@ -70,16 +71,14 @@ def main():
     
     # Social links in sidebar
     st.sidebar.markdown("### Connect")
-    social_cols = st.sidebar.columns(3)
-    
-    if "github" in SITE_CONFIG and SITE_CONFIG["github"]:
-        social_cols[0].markdown(f"[![GitHub](<https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white>)]({SITE_CONFIG['github']})")
-    
-    if "linkedin" in SITE_CONFIG and SITE_CONFIG["linkedin"]:
-        social_cols[1].markdown(f"[![LinkedIn](<https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white>)]({SITE_CONFIG['linkedin']})")
-    
-    if "bluesky" in SITE_CONFIG and SITE_CONFIG["bluesky"]:
-        social_cols[2].markdown(f"[![🦋 Bluesky](<https://img.shields.io/badge/Bluesky-0285FF?style=for-the-badge&logo=bluesky&logoColor=white>)]({SITE_CONFIG['bluesky']})")
+    create_social_links(
+        github_url=SITE_CONFIG.get("github"),
+        linkedin_url=SITE_CONFIG.get("linkedin"),
+        bluesky_url=SITE_CONFIG.get("bluesky"),
+        key="sidebar",
+        show_header=False,
+        show_description=False
+    )
     
     # Main content
     # Hero section with card
@@ -151,7 +150,8 @@ def main():
         with col1:
             st.markdown("I'm always open to new opportunities and collaborations. Feel free to connect with me on social media to discuss projects or just to network!")
         with col2:
-            button("View About", variant="default", size="lg", class_name="w-full", key="about_cta_btn")
+            if button("View About", variant="default", size="lg", class_name="w-full", key="about_cta_btn"):
+                st.switch_page("pages/About.py")
     
     # Footer
     create_footer()
