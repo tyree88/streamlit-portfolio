@@ -1,144 +1,172 @@
 /* Custom CSS for Streamlit Portfolio with shadcn-ui */
 
-/* Main theme colors and fonts */
+/* Dark theme styling */
 :root {
-    --background: #ffffff;
-    --foreground: #020817;
-    --card: #ffffff;
-    --card-foreground: #020817;
-    --popover: #ffffff;
-    --popover-foreground: #020817;
-    --primary: #0285FF;
-    --primary-foreground: #ffffff;
-    --secondary: #f1f5f9;
-    --secondary-foreground: #0f172a;
-    --muted: #f1f5f9;
-    --muted-foreground: #64748b;
-    --accent: #f1f5f9;
-    --accent-foreground: #0f172a;
-    --destructive: #ff0000;
-    --destructive-foreground: #ffffff;
-    --border: #e2e8f0;
-    --input: #e2e8f0;
-    --ring: #0285FF;
-    --radius: 0.5rem;
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --accent-color: #0285FF;
+    --secondary-color: #333333;
+    --card-bg-color: #1e1e1e;
+    --hover-color: #2a2a2a;
+    --border-color: #333333;
 }
 
 /* Global styles */
-.main {
-    padding: 1rem 2rem;
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* Remove default padding */
+.css-18e3th9 {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Remove container width restrictions */
+.css-1n76uvr, .css-1vq4p4l {
+    max-width: 100% !important;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    font-family: 'Inter', sans-serif;
 }
 
 /* Typography */
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    background-color: var(--background);
-    color: var(--foreground);
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    font-weight: 600;
 }
 
-/* Headers */
 .main-header {
-    font-size: 3rem;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.025em;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
-    color: var(--foreground);
+    color: var(--text-color);
 }
 
 .subheader {
     font-size: 1.5rem;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--primary);
+    color: var(--accent-color);
     margin-bottom: 2rem;
 }
 
 .section-header {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 1.3;
+    font-size: 1.8rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: var(--foreground);
+    color: var(--text-color);
+}
+
+p, li, span {
+    color: var(--text-color);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 /* Cards */
-[data-testid="stCard"] {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background-color: var(--card);
+[data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"] > div > div[data-testid="stVerticalBlock"] {
+    background-color: var(--card-bg-color);
+    border-radius: 0.5rem;
     padding: 1.5rem;
-    transition: all 0.2s ease;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-[data-testid="stCard"]:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+[data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"] > div > div[data-testid="stVerticalBlock"]:hover {
     transform: translateY(-2px);
-}
-
-/* Badges */
-.badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.25rem;
-    background-color: var(--secondary);
-    color: var(--secondary-foreground);
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Navigation */
-.stApp header {
-    background-color: var(--background);
-    border-bottom: 1px solid var(--border);
-}
-
-/* Sidebar */
-[data-testid="stSidebar"] {
-    background-color: var(--background);
-    border-right: 1px solid var(--border);
-    padding: 2rem 1rem;
-}
-
-[data-testid="stSidebar"] .stMarkdown {
-    padding: 0.5rem 0;
-}
-
-/* Social Links */
-.social-links img {
-    height: 2rem;
-    transition: transform 0.2s ease;
-}
-
-.social-links img:hover {
-    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--hover-color);
 }
 
 /* Buttons */
-.stButton button {
+.stButton > button {
+    border-radius: 0.375rem;
     font-weight: 500;
-    border-radius: var(--radius);
-    transition: all 0.2s ease;
+    transition: all 0.2s;
 }
 
-.stButton button:hover {
+.stButton > button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer */
+/* Badges */
+.stBadge {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 9999px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Form elements */
+.stTextInput > div > div > input {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.stTextArea > div > div > textarea {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.stSelectbox > div > div > select {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Footer styling */
 footer {
-    margin-top: 4rem;
-    padding: 2rem 0;
-    border-top: 1px solid var(--border);
-    text-align: center;
-    color: var(--muted-foreground);
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        font-size: 2rem;
+    }
+    
+    .subheader {
+        font-size: 1.2rem;
+    }
+    
+    .section-header {
+        font-size: 1.5rem;
+    }
 }
 
 /* Custom scrollbar */
@@ -148,81 +176,69 @@ footer {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--background);
+    background: var(--background-color);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--muted);
+    background: var(--secondary-color);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--muted-foreground);
+    background: var(--accent-color);
 }
 
-/* Add custom fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Streamlit specific overrides */
+.stApp {
+    background-color: var(--background-color);
 }
 
-.animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
+.css-18e3th9 {
+    padding-top: 0;
 }
 
-/* Responsive adjustments */
-@media screen and (max-width: 768px) {
-    .main {
-        padding: 1rem;
-    }
-    
-    .main-header {
-        font-size: 2rem;
-    }
-    
-    .subheader {
-        font-size: 1.25rem;
-    }
-}
-
-/* Custom shadcn-ui enhancements */
-.shadcn-card {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.shadcn-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-}
-
-/* Project card styling */
-.project-card {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.project-card-content {
-    flex-grow: 1;
-}
-
-.project-card-footer {
-    margin-top: auto;
+.css-1d391kg {
+    background-color: var(--card-bg-color);
 }
 
 /* Tabs styling */
-.tabs-container {
-    margin-bottom: 2rem;
+button[role="tab"] {
+    background-color: var(--card-bg-color) !important;
+    color: var(--text-color) !important;
 }
 
-/* Form elements */
-.stTextInput>div>div>input {
-    border-radius: 0.375rem;
+button[role="tab"][aria-selected="true"] {
+    background-color: var(--accent-color) !important;
+    color: white !important;
 }
 
-.stTextArea>div>div>textarea {
-    border-radius: 0.375rem;
+/* Sidebar */
+[data-testid="stSidebar"] {
+    background-color: var(--card-bg-color);
+    border-right: 1px solid var(--border-color);
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdown"] p {
+    color: var(--text-color);
+}
+
+/* Hide sidebar collapse control */
+[data-testid="collapsedControl"] {
+    display: none;
+}
+
+/* Info and error messages */
+.stAlert {
+    background-color: var(--card-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Code blocks */
+.stCodeBlock {
+    background-color: #1a1a1a !important;
+}
+
+.stCodeBlock pre {
+    color: #e0e0e0 !important;
 } 

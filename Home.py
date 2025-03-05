@@ -23,26 +23,88 @@ def load_css():
         # Default styling if CSS file doesn't exist
         st.markdown("""
         <style>
+        /* Dark theme styling */
+        :root {
+            --background-color: #121212;
+            --text-color: #ffffff;
+            --accent-color: #0285FF;
+            --secondary-color: #333333;
+            --card-bg-color: #1e1e1e;
+            --hover-color: #2a2a2a;
+            --border-color: #333333;
+        }
+        
+        body {
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+        
+        /* Full width content */
+        .main .block-container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            max-width: 100% !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+        
+        /* Remove default padding */
+        .css-18e3th9 {
+            padding-top: 0 !important;
+            padding-right: 0 !important;
+            padding-left: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        
+        /* Remove container width restrictions */
+        .css-1n76uvr, .css-1vq4p4l {
+            max-width: 100% !important;
+        }
+        
         .main-header {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            color: var(--text-color);
         }
+        
         .subheader {
             font-size: 1.5rem;
-            color: #4257b2;
+            color: var(--accent-color);
             margin-bottom: 2rem;
         }
+        
         .section-header {
             font-size: 1.8rem;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: #333;
+            color: var(--text-color);
         }
+        
         .highlight {
-            background-color: #f0f2f6;
+            background-color: var(--card-bg-color);
             padding: 1.5rem;
             border-radius: 0.5rem;
             margin-bottom: 1rem;
+        }
+        
+        /* Streamlit specific overrides */
+        .stApp {
+            background-color: var(--background-color);
+        }
+        
+        .stButton > button {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        [data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"] > div > div[data-testid="stVerticalBlock"] {
+            background-color: var(--card-bg-color);
+            border: 1px solid var(--border-color);
+        }
+        
+        /* Hide sidebar collapse control */
+        [data-testid="collapsedControl"] {
+            display: none
         }
         </style>
         """, unsafe_allow_html=True)
@@ -55,7 +117,19 @@ def main():
         page_title=SITE_CONFIG["title"],
         page_icon=SITE_CONFIG["icon"],
         layout="wide",
-        initial_sidebar_state="expanded",
+        initial_sidebar_state="collapsed",
+    )
+    
+    # Hide sidebar completely
+    st.markdown(
+        """
+    <style>
+        [data-testid="collapsedControl"] {
+            display: none
+        }
+    </style>
+    """,
+        unsafe_allow_html=True,
     )
     
     # Load custom CSS

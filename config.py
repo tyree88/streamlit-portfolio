@@ -2,6 +2,8 @@
 Configuration settings for the Streamlit portfolio application.
 """
 
+
+
 # Site configuration
 SITE_CONFIG = {
     "title": "My Portfolio",

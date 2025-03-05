@@ -1,13 +1,13 @@
 [theme]
 primaryColor = "#0285FF"
-backgroundColor = "#ffffff"
-secondaryBackgroundColor = "#f1f5f9"
-textColor = "#020817"
-font = "Inter"
+backgroundColor = "#121212"
+secondaryBackgroundColor = "#1e1e1e"
+textColor = "#FFFFFF"
+font = "sans serif"
 
 [server]
 enableCORS = false
-enableXsrfProtection = false
+enableXsrfProtection = true
 
 [browser]
 gatherUsageStats = false
@@ -17,6 +17,7 @@ showfileUploaderEncoding = false
 
 [global]
 developmentMode = false
+showWarningOnDirectExecution = true
 
 [client]
 toolbarMode = "minimal"
