@@ -177,6 +177,7 @@ def main():
     # Profile section
     card(key="profile_card",content=profile_card_content(),title="Profile",description="Profile",)
         
+    
         
         # profile_card_content()
     # Skills section
@@ -191,60 +192,45 @@ def main():
     # Experience section
     st.markdown("<h2 class='section-header'>Experience</h2>", unsafe_allow_html=True)
     
-    with card(key="experience_card"):
-        for i, experience in enumerate(CONTENT_CONFIG["experience"]):
-            col1, col2 = st.columns([1, 3])
-            
-            with col1:
-                st.markdown(f"**{experience.get('period', '')}**")
-                badges([(experience.get('company', ''), "outline")], 
-                       key=f"company_{i}")
-            
-            with col2:
-                st.markdown(f"### {experience.get('title', '')}")
-                st.markdown(experience.get('description', ''))
-            
-            if i < len(CONTENT_CONFIG["experience"]) - 1:
-                st.markdown("---")
+
+    for i, experience in enumerate(CONTENT_CONFIG["experience"]):
+        col1, col2 = st.columns([1, 3])
+        
+        with col1:
+            st.markdown(f"**{experience.get('period', '')}**")
+            badges([(experience.get('company', ''), "outline")], 
+                    key=f"company_{i}")
+        
+        with col2:
+            st.markdown(f"### {experience.get('title', '')}")
+            st.markdown(experience.get('description', ''))
+        
+        if i < len(CONTENT_CONFIG["experience"]) - 1:
+            st.markdown("---")
     
     # Education section
     st.markdown("<h2 class='section-header'>Education</h2>", unsafe_allow_html=True)
     
-    with card(key="education_card"):
-        for i, education in enumerate(CONTENT_CONFIG["education"]):
-            col1, col2 = st.columns([1, 3])
-            
-            with col1:
-                st.markdown(f"**{education.get('year', '')}**")
-                badges([(education.get('institution', ''), "outline")], 
-                       key=f"institution_{i}")
-            
-            with col2:
-                st.markdown(f"### {education.get('degree', '')}")
-                st.markdown(education.get('description', ''))
-            
-            if i < len(CONTENT_CONFIG["education"]) - 1:
-                st.markdown("---")
-    
-    # Contact section
-    st.markdown("<h2 class='section-header'>Connect With Me</h2>", unsafe_allow_html=True)
-    
-    with card(key="contact_card"):
-        st.markdown("""
-        ## Get In Touch
+
+    for i, education in enumerate(CONTENT_CONFIG["education"]):
+        col1, col2 = st.columns([1, 3])
         
-        I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-        Feel free to connect with me on social media to discuss projects or just to network!
-        """)
+        with col1:
+            st.markdown(f"**{education.get('year', '')}**")
+            badges([(education.get('institution', ''), "outline")], 
+                    key=f"institution_{i}")
         
-        create_social_links(
-            github_url=SITE_CONFIG.get("github"),
-            linkedin_url=SITE_CONFIG.get("linkedin"),
-            bluesky_url=SITE_CONFIG.get("bluesky"),
-            key="contact"
-        )
+        with col2:
+            st.markdown(f"### {education.get('degree', '')}")
+            st.markdown(education.get('description', ''))
+        
+        if i < len(CONTENT_CONFIG["education"]) - 1:
+            st.markdown("---")
+
     
+
     # Footer
+    
     create_footer()
 
 
