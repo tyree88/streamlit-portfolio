@@ -1,0 +1,475 @@
+/* Common styling shared across all pages */
+
+/* Dark theme styling */
+:root {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --accent-color: #0285FF;
+    --secondary-color: #333333;
+    --card-bg-color: #1e1e1e;
+    --hover-color: #2a2a2a;
+    --border-color: #333333;
+    --navbar-bg: #1a1a1a;
+    --tag-green: #4caf50;
+    --tag-red: #f44336;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+p, li, span {
+    color: var(--text-color);
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Full width content */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* Remove default padding */
+.css-18e3th9 {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Remove container width restrictions */
+.css-1n76uvr, .css-1vq4p4l {
+    max-width: 100% !important;
+}
+
+/* Header styles */
+.main-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.subheader {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    color: var(--text-color);
+}
+
+.section-header {
+    font-size: 1.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+/* Modern Navbar Styling */
+.navbar-container {
+    background-color: var(--navbar-bg) !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    margin-bottom: 20px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+/* SAC Menu Styling */
+.sac-menu {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* Home menu item styling */
+.sac-menu-item[data-value="home"] .sac-menu-item-icon {
+    color: #ff6b6b !important;
+}
+
+.sac-menu-item[data-value="home"]:hover {
+    background-color: rgba(255, 107, 107, 0.1) !important;
+}
+
+/* Menu items styling */
+.sac-menu-item {
+    border-radius: 8px !important;
+    margin: 2px 0 !important;
+    transition: all 0.2s ease !important;
+    padding: 8px 12px !important;
+}
+
+.sac-menu-item:hover {
+    background-color: var(--hover-color) !important;
+    transform: translateY(-1px) !important;
+}
+
+.sac-menu-item-active {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    font-weight: 500 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.sac-menu-item-icon {
+    margin-right: 8px !important;
+}
+
+/* Icon colors */
+.sac-menu-item[data-value="apple"] .sac-menu-item-icon {
+    color: #A2AAAD !important;
+}
+
+.sac-menu-item[data-value="other"] .sac-menu-item-icon {
+    color: #5D87FF !important;
+}
+
+.sac-menu-item[data-value="google"] .sac-menu-item-icon {
+    color: #4285F4 !important;
+}
+
+.sac-menu-item[data-value="gitlab"] .sac-menu-item-icon {
+    color: #FC6D26 !important;
+}
+
+.sac-menu-item[data-value="wechat"] .sac-menu-item-icon {
+    color: #7BB32E !important;
+}
+
+/* Disabled menu item styling */
+.sac-menu-item-disabled {
+    opacity: 0.5 !important;
+    cursor: not-allowed !important;
+}
+
+/* Navbar Tags */
+.navbar-tag {
+    padding: 5px 10px !important;
+    border-radius: 20px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    display: inline-block !important;
+    margin: 0 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+.navbar-tag:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) !important;
+}
+
+.navbar-tag-green {
+    background-color: var(--tag-green) !important;
+    color: white !important;
+}
+
+.navbar-tag-red {
+    background-color: var(--tag-red) !important;
+    color: white !important;
+}
+
+/* Dropdown styling */
+.sac-menu-submenu {
+    background-color: var(--card-bg-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid var(--border-color) !important;
+    padding: 4px !important;
+    margin-top: 5px !important;
+}
+
+.sac-menu-submenu .sac-menu-item {
+    padding: 8px 12px !important;
+}
+
+/* Divider styling */
+.sac-menu-divider {
+    background-color: var(--border-color) !important;
+    margin: 8px 0 !important;
+    height: 1px !important;
+}
+
+/* Description text styling */
+.sac-menu-item-desc {
+    color: #888888 !important;
+    font-size: 12px !important;
+    margin-top: 2px !important;
+}
+
+/* Streamlit Ant Design Components overrides */
+div[data-testid="stVerticalBlock"] div.ant-menu {
+    background-color: var(--card-bg-color) !important;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu {
+    background-color: var(--card-bg-color) !important;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu-item {
+    color: var(--text-color) !important;
+    border-radius: 6px;
+    margin: 2px 0;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu-item:hover {
+    background-color: var(--hover-color) !important;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu-item-active {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styling */
+.stButton > button {
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 4px;
+    border: none;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Badge styling */
+.stBadge {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Hide sidebar collapse control */
+[data-testid="collapsedControl"] {
+    display: none
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Footer styling */
+footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-header {
+        font-size: 2rem;
+    }
+    
+    .subheader {
+        font-size: 1rem;
+    }
+    
+    .section-header {
+        font-size: 1.5rem;
+    }
+}
+
+/* We now use JavaScript to remove native Streamlit sidebar navigation elements */
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: var(--card-bg-color) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* Sidebar header styling */
+[data-testid="stSidebar"] .stMarkdown h1 {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+    color: var(--text-color) !important;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+/* Sidebar section headers */
+[data-testid="stSidebar"] .stMarkdown h3 {
+    font-size: 1.1rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+    color: var(--text-color) !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar menu styling */
+[data-testid="stSidebar"] .sac-menu {
+    margin-bottom: 1rem !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+}
+
+/* Sidebar menu item styling */
+[data-testid="stSidebar"] .sac-menu-item {
+    padding: 0.5rem 0.75rem !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Sidebar menu item hover effect */
+[data-testid="stSidebar"] .sac-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Sidebar menu item active state */
+[data-testid="stSidebar"] .sac-menu-item-active {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    font-weight: 600 !important;
+}
+
+/* Sidebar button styling */
+[data-testid="stSidebar"] .stButton button {
+    width: 100% !important;
+    border-radius: 6px !important;
+    background-color: var(--secondary-bg-color) !important;
+    color: var(--text-color) !important;
+    border: 1px solid var(--border-color) !important;
+    transition: all 0.2s ease !important;
+    margin-bottom: 0.5rem !important;
+    font-size: 0.9rem !important;
+    padding: 0.3rem 0.5rem !important;
+}
+
+/* Sidebar button hover effect */
+[data-testid="stSidebar"] .stButton button:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: var(--primary-color) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar-container {
+        display: none !important;
+    }
+    
+    [data-testid="stSidebar"] {
+        min-width: 250px !important;
+        max-width: 300px !important;
+    }
+}
+
+@media (min-width: 769px) {
+    /* Make sidebar narrower on desktop */
+    [data-testid="stSidebar"] {
+        min-width: 220px !important;
+        max-width: 250px !important;
+    }
+}
+
+/* Sidebar toggle button */
+.sidebar-toggle {
+    background: transparent !important;
+    border: none !important;
+    color: white !important;
+    font-size: 24px !important;
+    cursor: pointer !important;
+    padding: 5px 10px !important;
+    border-radius: 5px !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.sidebar-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Hide sidebar collapse control */
+[data-testid="collapsedControl"] {
+    display: none !important;
+}
+
+/* Mobile Navigation Styling */
+.sidebar .stButton > button {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    color: #495057;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+}
+
+.sidebar .stButton > button:hover {
+    background-color: #e9ecef;
+    color: #212529;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for mobile navigation headers */
+.sidebar h1, .sidebar h3 {
+    color: #343a40;
+    font-weight: 600;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Style for mobile navigation dividers */
+.sidebar hr {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 0;
+    border-top: 1px solid #dee2e6;
+} 

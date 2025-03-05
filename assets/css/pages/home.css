@@ -1,0 +1,93 @@
+/* Home page specific styling */
+
+/* Dark theme styling */
+:root {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --accent-color: #0285FF;
+    --secondary-color: #333333;
+    --card-bg-color: #1e1e1e;
+    --hover-color: #2a2a2a;
+    --border-color: #333333;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Full width content */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* Remove default padding */
+.css-18e3th9 {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Remove container width restrictions */
+.css-1n76uvr, .css-1vq4p4l {
+    max-width: 100% !important;
+}
+
+.stApp {
+    background-color: var(--background-color);
+}
+
+/* Hide sidebar collapse control */
+[data-testid="collapsedControl"] {
+    display: none
+}
+
+/* Hero section styling */
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 1rem;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, var(--accent-color), #00b4d8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease-in;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    animation: fadeIn 1.5s ease-in;
+}
+
+/* Button styling */
+.action-button {
+    margin-top: 1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+} 

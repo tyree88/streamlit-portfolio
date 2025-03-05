@@ -77,6 +77,134 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Navbar styling */
+.navbar-container {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--background-color);
+    backdrop-filter: blur(10px);
+}
+
+/* Ant Design Menu Styling */
+.ant-menu {
+    background-color: var(--card-bg-color) !important;
+    border-radius: 8px !important;
+}
+
+.ant-menu-item {
+    color: var(--text-color) !important;
+    transition: all 0.2s ease;
+}
+
+.ant-menu-item:hover {
+    background-color: var(--hover-color) !important;
+    transform: translateY(-2px);
+}
+
+.ant-menu-item-selected {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ant-menu-submenu-title {
+    color: var(--text-color) !important;
+    font-weight: 500;
+}
+
+.ant-menu-submenu-arrow {
+    color: var(--text-color) !important;
+}
+
+/* Section anchors for navigation */
+div[id="profile"],
+div[id="skills"],
+div[id="experience"],
+div[id="education"],
+div[id="connect"] {
+    scroll-margin-top: 80px; /* Adjust based on navbar height */
+    position: relative;
+}
+
+/* Streamlit Ant Design Components overrides */
+div[data-testid="stVerticalBlock"] div.ant-menu {
+    background-color: var(--card-bg-color) !important;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu {
+    background-color: var(--card-bg-color) !important;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu-item {
+    color: var(--text-color) !important;
+    border-radius: 6px;
+    margin: 2px 0;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu-item:hover {
+    background-color: var(--hover-color) !important;
+}
+
+div[data-testid="stVerticalBlock"] div.sac-menu-item-active {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* GitHub repository card styling */
+.repo-card {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: var(--card-bg-color);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.repo-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.repo-name {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--accent-color);
+}
+
+.repo-description {
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.repo-metrics {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.repo-language {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.language-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 4px;
+}
+
 /* Cards */
 [data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"] > div > div[data-testid="stVerticalBlock"] {
     background-color: var(--card-bg-color);

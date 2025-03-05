@@ -1,0 +1,99 @@
+/* About page specific styling */
+
+/* Dark theme styling */
+:root {
+    --background-color: #121212;
+    --text-color: #ffffff;
+    --accent-color: #0285FF;
+    --secondary-color: #333333;
+    --card-bg-color: #1e1e1e;
+    --hover-color: #2a2a2a;
+    --border-color: #333333;
+}
+
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Full width content */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+}
+
+/* Remove default padding */
+.css-18e3th9 {
+    padding-top: 0 !important;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Remove container width restrictions */
+.css-1n76uvr, .css-1vq4p4l {
+    max-width: 100% !important;
+}
+
+.stApp {
+    background-color: var(--background-color);
+}
+
+/* Hide sidebar collapse control */
+[data-testid="collapsedControl"] {
+    display: none
+}
+
+/* Section anchors for navigation */
+div[id="profile"],
+div[id="skills"],
+div[id="experience"],
+div[id="education"],
+div[id="connect"] {
+    scroll-margin-top: 80px; /* Adjust based on navbar height */
+    position: relative;
+}
+
+/* Timeline styling */
+.timeline-item {
+    border-left: 2px solid var(--accent-color);
+    padding-left: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-item:before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+}
+
+/* Profile card styling */
+.profile-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+}
+
+/* Skills section styling */
+.skill-bar {
+    height: 10px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.skill-progress {
+    height: 100%;
+    background-color: var(--accent-color);
+    border-radius: 5px;
+} 

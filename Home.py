@@ -7,107 +7,11 @@ import os
 from config import SITE_CONFIG
 from components.footer import create_footer
 from components.contact_form import create_social_links
-from components.navbar import create_navbar
+from components.navbar import create_navbar, initialize_navigation
 from streamlit_shadcn_ui import card
 from streamlit_shadcn_ui import button
 from streamlit_shadcn_ui.py_components.badges import badges
-
-
-def load_css():
-    """Load custom CSS."""
-    css_file = "assets/css/style.css"
-    if os.path.exists(css_file):
-        with open(css_file) as f:
-            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-    else:
-        # Default styling if CSS file doesn't exist
-        st.markdown("""
-        <style>
-        /* Dark theme styling */
-        :root {
-            --background-color: #121212;
-            --text-color: #ffffff;
-            --accent-color: #0285FF;
-            --secondary-color: #333333;
-            --card-bg-color: #1e1e1e;
-            --hover-color: #2a2a2a;
-            --border-color: #333333;
-        }
-        
-        body {
-            color: var(--text-color);
-            background-color: var(--background-color);
-        }
-        
-        /* Full width content */
-        .main .block-container {
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-            max-width: 100% !important;
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
-        }
-        
-        /* Remove default padding */
-        .css-18e3th9 {
-            padding-top: 0 !important;
-            padding-right: 0 !important;
-            padding-left: 0 !important;
-            padding-bottom: 0 !important;
-        }
-        
-        /* Remove container width restrictions */
-        .css-1n76uvr, .css-1vq4p4l {
-            max-width: 100% !important;
-        }
-        
-        .main-header {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-        
-        .subheader {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            margin-bottom: 2rem;
-        }
-        
-        .section-header {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-        
-        .highlight {
-            background-color: var(--card-bg-color);
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        /* Streamlit specific overrides */
-        .stApp {
-            background-color: var(--background-color);
-        }
-        
-        .stButton > button {
-            background-color: var(--accent-color);
-            color: white;
-        }
-        
-        [data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"] > div > div[data-testid="stVerticalBlock"] {
-            background-color: var(--card-bg-color);
-            border: 1px solid var(--border-color);
-        }
-        
-        /* Hide sidebar collapse control */
-        [data-testid="collapsedControl"] {
-            display: none
-        }
-        </style>
-        """, unsafe_allow_html=True)
+from utils.display_utils import load_all_css
 
 
 def main():
@@ -117,26 +21,14 @@ def main():
         page_title=SITE_CONFIG["title"],
         page_icon=SITE_CONFIG["icon"],
         layout="wide",
-        initial_sidebar_state="collapsed",
+        initial_sidebar_state="expanded",
     )
     
-    # Hide sidebar completely
-    st.markdown(
-        """
-    <style>
-        [data-testid="collapsedControl"] {
-            display: none
-        }
-    </style>
-    """,
-        unsafe_allow_html=True,
-    )
+    # Initialize navigation settings
+    initialize_navigation()
     
     # Load custom CSS
-    load_css()
-    
-    # Navigation
-    create_navbar(current_page="home")
+    load_all_css("home")
     
     # Main content
     # Hero section with card
@@ -148,8 +40,10 @@ def main():
         with col1:
             st.markdown(SITE_CONFIG["description"])
         with col2:
-            button("View Projects", variant="default", size="lg", class_name="w-full mb-2", key="view_projects_btn")
-            if button("View About", variant="outline", size="lg", class_name="w-full", key="view_about_btn"):
+            if button("View Projects", variant="default", size="lg", key="view_projects_btn"):
+                st.session_state.project_filter = "all_projects"
+                st.switch_page("pages/Projects.py")
+            if button("View About", variant="outline", size="lg", key="view_about_btn"):
                 st.switch_page("pages/About.py")
     
     # Skills section

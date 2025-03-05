@@ -5,52 +5,22 @@ Theme setup component for the Streamlit portfolio.
 import streamlit as st
 import os
 from typing import Optional
+from utils.display_utils import load_css_file
 
 
-def load_css(custom_css_path: Optional[str] = "assets/css/style.css") -> None:
+def load_css(custom_css_path: Optional[str] = None) -> None:
     """
-    Load custom CSS from a file or use default styling.
+    Load CSS files for the application.
     
     Args:
-        custom_css_path: Path to the custom CSS file
+        custom_css_path: Optional path to a custom CSS file
     """
+    # Load common CSS
+    load_css_file("assets/css/pages/common.css")
+    
+    # Load custom CSS if provided
     if custom_css_path and os.path.exists(custom_css_path):
-        with open(custom_css_path) as f:
-            st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-    else:
-        # Default styling if CSS file doesn't exist
-        st.markdown("""
-        <style>
-        .main-header {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-        .subheader {
-            font-size: 1.5rem;
-            color: #4257b2;
-            margin-bottom: 2rem;
-        }
-        .section-header {
-            font-size: 1.8rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-        .highlight {
-            background-color: #f0f2f6;
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        .shadcn-card {
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .shadcn-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        </style>
-        """, unsafe_allow_html=True)
+        load_css_file(custom_css_path)
 
 
 def add_custom_fonts() -> None:

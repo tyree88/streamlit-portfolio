@@ -121,4 +121,53 @@ def create_project_card(project: Dict[str, Any]) -> None:
             if 'github_url' in project and project['github_url']:
                 cols[1].markdown(f"[View Code]({project['github_url']})")
         
-        st.markdown("---") 
+        st.markdown("---")
+
+
+def load_css_file(css_file_path: str) -> None:
+    """
+    Load a CSS file and inject it into the Streamlit app.
+    
+    Args:
+        css_file_path: Path to the CSS file relative to the application root
+    """
+    import streamlit as st
+    import os
+    
+    # Try to find the file at the given path
+    if os.path.exists(css_file_path):
+        with open(css_file_path) as f:
+            css_content = f.read()
+            # Wrap CSS in style tags and inject it
+            st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
+    else:
+        # If not found, try to find it relative to the current file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.abspath(os.path.join(current_dir, "../.."))
+        absolute_path = os.path.join(project_root, css_file_path)
+        
+        if os.path.exists(absolute_path):
+            with open(absolute_path) as f:
+                css_content = f.read()
+                # Wrap CSS in style tags and inject it
+                st.markdown(f'<style>{css_content}</style>', unsafe_allow_html=True)
+        else:
+            st.warning(f"CSS file not found: {css_file_path}")
+            st.info(f"Tried paths: \n1. {css_file_path}\n2. {absolute_path}")
+
+
+def load_all_css(page_name: str = None) -> None:
+    """
+    Load all necessary CSS files for the application.
+    
+    Args:
+        page_name: Optional name of the current page to load page-specific CSS
+    """
+    import streamlit as st
+    
+    # Load common CSS first
+    load_css_file("assets/css/pages/common.css")
+    
+    # Load page-specific CSS if provided
+    if page_name and page_name.lower() in ["home", "about", "projects"]:
+        load_css_file(f"assets/css/pages/{page_name.lower()}.css") 
