@@ -7,7 +7,7 @@ from components.contact_form import contact_info
 from components.navbar import create_navbar
 from components.project_card import create_project_card, create_featured_projects
 from components.skill_card import create_skill_card, create_skills_section
-from components.social_links import create_social_badges, create_social_buttons
+from components.social_links import create_social_badges, create_social_links
 from components.page_header import setup_page, create_page_header, create_sidebar_profile
 from components.theme_setup import load_css, add_custom_fonts, add_font_awesome
 from components.github_repo_card import create_repo_card, create_github_repos_section

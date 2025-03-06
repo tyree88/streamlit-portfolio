@@ -38,9 +38,15 @@ def display_skills(skills_df: pd.DataFrame) -> None:
     fig.update_layout(
         plot_bgcolor='rgba(0,0,0,0)',
         paper_bgcolor='rgba(0,0,0,0)',
-        font_size=12,
+        font_size=14,
         margin=dict(l=0, r=0, t=40, b=0),
-        xaxis=dict(range=[0, 100])
+        xaxis=dict(range=[0, 100]),
+        font=dict(color='white')
+    )
+    
+    # Update the hover template
+    fig.update_traces(
+        hovertemplate='<b>%{y}</b><br>Proficiency: %{x}%<extra></extra>'
     )
     
     # Display the chart
@@ -58,15 +64,15 @@ def create_timeline(events: List[Dict[str, Any]]) -> None:
         col1, col2 = st.columns([1, 3])
         
         with col1:
-            st.markdown(f"**{event.get('period', '')}**")
+            st.markdown(f"<div class='timeline-period'>{event.get('period', '')}</div>", unsafe_allow_html=True)
         
         with col2:
-            st.markdown(f"### {event.get('title', '')}")
-            st.markdown(f"*{event.get('company', event.get('institution', ''))}*")
-            st.markdown(event.get('description', ''))
+            st.markdown(f"<h3 class='timeline-title'>{event.get('title', '')}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<div class='timeline-institution'>{event.get('company', event.get('institution', ''))}</div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='timeline-description'>{event.get('description', '')}</div>", unsafe_allow_html=True)
         
         if i < len(events) - 1:
-            st.markdown("---")
+            st.markdown("<hr class='timeline-divider'>", unsafe_allow_html=True)
 
 
 def create_project_card(project: Dict[str, Any]) -> None:
@@ -143,7 +149,7 @@ def load_css_file(css_file_path: str) -> None:
     else:
         # If not found, try to find it relative to the current file
         current_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.abspath(os.path.join(current_dir, "../.."))
+        project_root = os.path.abspath(os.path.join(current_dir, ".."))
         absolute_path = os.path.join(project_root, css_file_path)
         
         if os.path.exists(absolute_path):
@@ -163,9 +169,10 @@ def load_all_css(page_name: str = None) -> None:
     Args:
         page_name: Optional name of the current page to load page-specific CSS
     """
-    import streamlit as st
+    # Load global CSS first
+    load_css_file("assets/css/style.css")
     
-    # Load common CSS first
+    # Load common CSS next
     load_css_file("assets/css/pages/common.css")
     
     # Load page-specific CSS if provided

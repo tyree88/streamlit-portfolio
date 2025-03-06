@@ -1,14 +1,27 @@
 /* Projects page specific styling */
 
-/* Dark theme styling */
+/* Dark theme styling - Updated to match shadcn/ui example */
 :root {
-    --background-color: #121212;
+    --background-color: #0c0c0c;
     --text-color: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
     --accent-color: #0285FF;
     --secondary-color: #333333;
-    --card-bg-color: #1e1e1e;
+    --card-bg-color: #1c1c1c;
     --hover-color: #2a2a2a;
-    --border-color: #333333;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    --card-border: 1px solid rgba(255, 255, 255, 0.05);
+    --card-radius: 12px;
+    --transition-speed: 0.3s;
+    --success-color: #10b981;
+    --blue-500: #1677ff;
+    --yellow-500: #faad14;
+    --green-500: #52c41a;
+    --red-500: #f5222d;
+    --purple-500: #722ed1;
+    --orange-500: #fa8c16;
+    --gray-500: #8c8c8c;
 }
 
 body {
@@ -16,7 +29,6 @@ body {
     background-color: var(--background-color);
 }
 
-/* Full width content */
 .main .block-container {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -42,14 +54,32 @@ body {
     background-color: var(--background-color);
 }
 
+/* Button styling - Similar to shadcn/ui example */
 .stButton > button {
-    background-color: var(--accent-color);
-    color: white;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    margin-bottom: 0.5rem !important;
 }
 
+.stButton > button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Card styling for Streamlit containers */
 [data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"] > div > div[data-testid="stVerticalBlock"] {
     background-color: var(--card-bg-color);
-    border: 1px solid var(--border-color);
+    border-radius: var(--card-radius);
+    border: var(--card-border);
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    padding: 1.5rem;
+}
+
+[data-testid="stVerticalBlock"] [data-testid="stHorizontalBlock"] > div > div[data-testid="stVerticalBlock"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
 }
 
 /* Hide sidebar collapse control */
@@ -57,35 +87,349 @@ body {
     display: none
 }
 
+/* Additional projects-specific card styling */
+div[data-shadcn-ui="card"] {
+    background-color: var(--card-bg-color) !important;
+    border-radius: var(--card-radius) !important;
+    border: var(--card-border) !important;
+    box-shadow: var(--card-shadow) !important;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed) !important;
+    padding: 1.5rem !important;
+    margin-bottom: 1.5rem !important;
+    color: var(--text-color) !important;
+}
+
+div[data-shadcn-ui="card"]:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Fix for any white elements inside cards */
+div[data-shadcn-ui="card"] > div,
+div[data-shadcn-ui="card"] p,
+div[data-shadcn-ui="card"] h1,
+div[data-shadcn-ui="card"] h2,
+div[data-shadcn-ui="card"] h3,
+div[data-shadcn-ui="card"] h4,
+div[data-shadcn-ui="card"] h5,
+div[data-shadcn-ui="card"] h6,
+div[data-shadcn-ui="card"] span {
+    color: var(--text-color) !important;
+    background-color: transparent !important;
+}
+
+/* Filter section styling */
+.filter-container {
+    background-color: var(--card-bg-color);
+    border-radius: var(--card-radius);
+    border: var(--card-border);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--card-shadow);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Tabs styling - Similar to shadcn/ui example */
+div[data-testid="stVerticalBlock"] div[data-shadcn-ui="tabs"] {
+    margin-bottom: 1.5rem !important;
+}
+
+div[data-testid="stVerticalBlock"] div[data-shadcn-ui="tabs"] button {
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    margin-right: 0.5rem !important;
+}
+
+div[data-testid="stVerticalBlock"] div[data-shadcn-ui="tabs"] button[data-state="active"] {
+    background-color: var(--accent-color) !important;
+    color: white !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Button styling for projects page */
+div[data-testid="stVerticalBlock"] button[data-shadcn-ui="button"] {
+    border-radius: 6px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    margin-bottom: 0.5rem !important;
+}
+
+div[data-testid="stVerticalBlock"] button[data-shadcn-ui="button"]:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Search input styling */
+div[data-testid="stVerticalBlock"] input[type="text"] {
+    background-color: var(--card-bg-color) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+    color: var(--text-color) !important;
+    padding: 0.75rem 1rem !important;
+    transition: all 0.2s ease !important;
+}
+
+div[data-testid="stVerticalBlock"] input[type="text"]:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 0 2px rgba(2, 133, 255, 0.2) !important;
+}
+
 /* Project card styling */
-.project-card {
+.stCardContainer {
+    border-radius: 12px;
     border: 1px solid var(--border-color);
-    border-radius: 8px;
-    padding: 16px;
-    margin-bottom: 16px;
     background-color: var(--card-bg-color);
     transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    padding: 0.5rem;
 }
 
-.project-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+.stCardContainer:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Filter styling */
-.filter-section {
-    margin-bottom: 20px;
+/* Project header */
+.project-header {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Tab styling for shadcn-ui tabs */
-button[role="tab"] {
+/* Project title */
+.project-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
     color: var(--text-color);
-    background-color: var(--card-bg-color);
-    border-color: var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-button[role="tab"][aria-selected="true"] {
+/* Project description */
+.project-description {
+    font-size: 1rem;
+    color: var(--text-secondary-color);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+/* Visual placeholder */
+.project-visual-placeholder {
+    height: 120px;
+    background: linear-gradient(135deg, var(--accent-color-transparent), var(--secondary-color-transparent));
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Project metadata */
+.project-metadata {
+    margin-bottom: 1rem;
+}
+
+/* Tags section */
+.project-tags-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+/* Language badge */
+.language-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
     color: white;
+    margin-right: 0.5rem;
+}
+
+/* Stat items */
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.stat-icon {
+    font-size: 1.1rem;
+}
+
+.stat-value {
+    font-weight: 500;
+}
+
+/* Date info */
+.date-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.date-label {
+    font-weight: 500;
+    color: var(--text-secondary-color);
+}
+
+.date-value {
+    color: var(--text-color);
+}
+
+/* Horizontal rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border-color);
+    margin: 1rem 0;
+}
+
+/* Button styling */
+.stButton > button {
+    width: 100%;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: all 0.2s;
     background-color: var(--accent-color);
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.stButton > button:hover {
+    background-color: var(--accent-color-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Filter section */
+.stChip {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Chip styling */
+div[data-testid="stHorizontalBlock"] .stChip {
+    background-color: var(--chip-bg-color);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 16px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    transition: all 0.2s;
+}
+
+div[data-testid="stHorizontalBlock"] .stChip:hover {
+    background-color: var(--chip-bg-hover-color);
     border-color: var(--accent-color);
+}
+
+/* Selected chip */
+div[data-testid="stHorizontalBlock"] .stChip[data-selected="true"] {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+/* Subheader styling */
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    color: var(--text-color);
+}
+
+/* Empty state */
+.stAlert {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-creation-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .project-visual-placeholder {
+        height: 80px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Filter section styling */
+.filter-summary {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    display: inline-block;
+}
+
+/* Filter card styling */
+div[data-testid="stVerticalBlock"] div[data-shadcn-ui="card"] {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+}
+
+/* Filter headings */
+h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0.75rem 0;
+    color: var(--text-secondary-color);
+}
+
+/* Chip container styling */
+div[data-testid="stHorizontalBlock"] {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Language chips */
+div[data-testid="stHorizontalBlock"] .stChip[data-selected="true"][data-key*="language_filter"] {
+    background-color: var(--blue-500);
+    color: white;
+    border-color: var(--blue-500);
+}
+
+/* Topic chips */
+div[data-testid="stHorizontalBlock"] .stChip[data-selected="true"][data-key*="topic_filter"] {
+    background-color: var(--green-500);
+    color: white;
+    border-color: var(--green-500);
 } 

@@ -21,36 +21,38 @@ def create_navbar(current_page: str = "home") -> None:
         
         st.markdown("<h3>Project Categories</h3>", unsafe_allow_html=True)
         
-        # Create direct buttons for project filters
-        if st.button("All Projects", use_container_width=True, key="sidebar_all_projects"):
+        # Create direct buttons for project filters with unique keys based on current page
+        key_prefix = f"{current_page}_"
+        
+        if st.button("All Projects", use_container_width=True, key=f"{key_prefix}sidebar_all_projects"):
             st.session_state.project_filter = 'all_projects'
             if current_page != 'projects':
                 st.switch_page("pages/Projects.py")
             else:
                 st.rerun()
                 
-        if st.button("Data Science", use_container_width=True, key="sidebar_data_science"):
+        if st.button("Data Science", use_container_width=True, key=f"{key_prefix}sidebar_data_science"):
             st.session_state.project_filter = 'data_science'
             if current_page != 'projects':
                 st.switch_page("pages/Projects.py")
             else:
                 st.rerun()
                 
-        if st.button("Web Development", use_container_width=True, key="sidebar_web_dev"):
+        if st.button("Web Development", use_container_width=True, key=f"{key_prefix}sidebar_web_dev"):
             st.session_state.project_filter = 'web_dev'
             if current_page != 'projects':
                 st.switch_page("pages/Projects.py")
             else:
                 st.rerun()
                 
-        if st.button("Machine Learning", use_container_width=True, key="sidebar_ml"):
+        if st.button("Machine Learning", use_container_width=True, key=f"{key_prefix}sidebar_ml"):
             st.session_state.project_filter = 'ml'
             if current_page != 'projects':
                 st.switch_page("pages/Projects.py")
             else:
                 st.rerun()
                 
-        if st.button("GitHub Repos", use_container_width=True, key="sidebar_github_repos"):
+        if st.button("GitHub Repos", use_container_width=True, key=f"{key_prefix}sidebar_github_repos"):
             st.session_state.project_filter = 'github_repos'
             if current_page != 'projects':
                 st.switch_page("pages/Projects.py")
@@ -118,8 +120,8 @@ def create_desktop_navbar(current_page: str) -> None:
             </div>
             """, unsafe_allow_html=True)
             
-            # Add a sidebar toggle button
-            if st.button("☰", key="desktop_sidebar_toggle"):
+            # Add a sidebar toggle button with unique key
+            if st.button("☰", key=f"{current_page}_desktop_sidebar_toggle"):
                 # Toggle sidebar visibility
                 if st.session_state.get("sidebar_visible", True):
                     st.session_state.sidebar_visible = False
